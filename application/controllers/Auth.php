@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit ('No direct script access allowed');
 
 class Auth extends CI_Controller {
-  public function _construct() {
-    parent::_construct();
+  public function __construct() {
+    parent::__construct();
     $this->load->model('M_operator');
     // $this->load->library('session');
   }
@@ -25,7 +25,7 @@ class Auth extends CI_Controller {
     $user = $this->M_operator->get_by_username($username);
     if ($user && password_verify($password, $user->password)) {
       // simpan session
-      $this->session->set_upgrade([
+      $this->session->set_userdata([
         'login' => TRUE,
         'username' => $user->username,
         'nama' => $user->nama_lengkap,
